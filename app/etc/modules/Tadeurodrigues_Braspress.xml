@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Tadeurodrigues_Braspress>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+              <Mage_Shipping/>
+            </depends>
+        </Tadeurodrigues_Braspress>
+    </modules>
+</config>

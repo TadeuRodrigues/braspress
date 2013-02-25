@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+    	<Tadeurodrigues_Braspress>
+      		<version>2.0.0</version>
+    	</Tadeurodrigues_Braspress>
+  	</modules>
+ 
+	<global>
+    	<models>
+      		<braspress>
+        		<class>Tadeurodrigues_Braspress_Model</class>
+      		</braspress>
+    	</models>
+    	<resources>
+	      	<braspress_setup>
+	        	<setup>
+	          		<module>Tadeurodrigues_Braspress</module>
+	        	</setup>
+	        	<connection>
+	        		<use>core_setup</use>
+	        	</connection>
+	      	</braspress_setup>
+    	</resources>
+  	</global>
+    <default>
+        <carriers>
+            <braspress>
+                    <active>1</active>
+                    <sallowspecific>0</sallowspecific>
+					<model>Tadeurodrigues_Braspress_Model_Carrier_Default</model>
+                    <name>Braspress</name>
+                    <method_name>Braspress</method_name>
+                    <title>Braspress</title>
+                    <specificerrmsg>Houve um problema interno.</specificerrmsg>
+                    <handling_type>R</handling_type>
+            </braspress>
+        </carriers>
+    </default>
+</config>
