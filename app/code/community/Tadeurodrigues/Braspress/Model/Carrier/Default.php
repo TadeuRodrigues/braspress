@@ -92,10 +92,24 @@ class TadeuRodrigues_Braspress_Model_Carrier_Default extends Mage_Shipping_Model
          
             // record method information
             $method->setMethod($this->_code);
+
+			Mage::log($calFrete->PRAZOENTREGA, null, 'braspress_test.log');
 			
 			if($this->getConfigData('delivery_time')){
 				$prazo = $calFrete->PRAZOENTREGA;
-				$method_name = $this->getConfigData('method_name').' prazo '.$prazo.' dia(s)';
+				switch($prazo){
+					case 0:
+						$prazomsg = ' entrega imedita';
+					break;
+					case 1:
+						$prazomsg = ' prazo de 1 dia';
+					break;
+					default:
+						$prazomsg = ' prazo de '.$prazo.' dias';
+					break;
+				}
+				
+				$method_name = $this->getConfigData('method_name').$prazomsg;
 			}else{
 				$method_name = $this->getConfigData('method_name');
 			}

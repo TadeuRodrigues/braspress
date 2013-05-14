@@ -1,0 +1,66 @@
+<script type="text/javascript">
+    //<![CDATA[
+    function validation() {
+    	var elem = $('braspress_button');
+    	
+    	params = {
+    		cnpj: $('carriers_braspress_cnpj').value
+    	}
+    	
+        new Ajax.Request('<?php echo $this->getAjaxCheckUrl() ?>', {
+			parameters: params,
+            onSuccess: function(response){
+            	var json = response.responseText.evalJSON();
+            	result = 'Validado com sucesso';
+ 				try{
+                	if(json.status == 'OK'){
+                		elem.removeClassName('fail').addClassName('success');
+                	}else{
+                		elem.removeClassName('success').addClassName('fail');
+                		result = json.msg;
+                	}
+            	}catch (e) {
+					elem.removeClassName('success').addClassName('fail');
+				}
+				
+				//alert(json.status);
+				
+				//alert(response ? Object.inspect(response) : "no JSON object");
+				
+				$('braspress_button').update(result);
+            }
+        });
+    }
+    
+    
+	function validateVat() {
+		var elem = $('general_store_information_validate_vat_number');
+		
+		params = {
+					country: $('general_store_information_merchant_country').value,
+					vat: $('general_store_information_merchant_vat_number').value
+				};
+
+		new Ajax.Request('http://localhost/~tadeurodrigues/magento17/index.php/admin/customer_system_config_validatevat/validate/key/8c2fa7cdc826fc1e6446c9505201edf0/', {
+				parameters: params,
+				onSuccess: function(response) {
+						result = 'VAT Number is Invalid';
+						try {
+							response = response.responseText;
+							if (response == 1) {
+								result = 'VAT Number is Valid';
+								elem.removeClassName('fail').addClassName('success')
+							} else {
+								elem.removeClassName('success').addClassName('fail')
+							}
+						} catch (e) {
+							elem.removeClassName('success').addClassName('fail')
+						}
+						$('validation_result').update(result);
+				}
+		});
+	} 
+    //]]>
+</script>
+ 
+<?php echo $this->getButtonHtml() ?>
