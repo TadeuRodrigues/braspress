@@ -2,7 +2,7 @@
 <config>
 	<modules>
     	<Tadeurodrigues_Braspress>
-      		<version>2.1.0</version>
+      		<version>2.1.1</version>
     	</Tadeurodrigues_Braspress>
   	</modules>
     <global>
@@ -83,6 +83,8 @@
                     <method_name>Braspress</method_name>
                     <title>Braspress</title>
                     <specificerrmsg>Houve um problema interno.</specificerrmsg>
+                    <use_default>0</use_default>
+                    <cnpj_default>02049076000137</cnpj_default>
                     <handling_type>R</handling_type>
             </braspress>
         </carriers>

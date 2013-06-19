@@ -38,6 +38,24 @@ class TadeuRodrigues_Braspress_Model_Carrier_Default extends Mage_Shipping_Model
 	
 	$quote	=	$this->getQuote();
 	$cart	=	$this->getCart();
+	
+	// cnpj default
+	
+	switch($this->getConfigData('use_default')){
+		case 0:
+			$cnpjdes = $quote->getData("customer_taxvat");
+			break;
+		case 1:
+			$cnpjdes = $this->getConfigData('cnpj');
+			break;
+		case 2:
+			$cnpjdes = $this->getConfigData('cnpj_default');
+			break;
+			
+		default:
+			$cnpjdes = $quote->getData("customer_taxvat");
+		
+	}
 
 	$this->params = array(
     "cnpj"          =>   preg_replace( '/[^0-9]/', '', $this->getConfigData('cnpj') ),
@@ -45,7 +63,7 @@ class TadeuRodrigues_Braspress_Model_Carrier_Default extends Mage_Shipping_Model
     "ceporigem"     =>   preg_replace( '/[^0-9]/', '', Mage::getStoreConfig('shipping/origin/postcode', $this->getStore())),
     "cepdestino"    =>   preg_replace( '/[^0-9]/', '', $request->getDestPostcode() ),
     "cnpjrem"       =>   preg_replace( '/[^0-9]/', '', $this->getConfigData('cnpj') ),
-    "cnpjdes"       =>   preg_replace( '/[^0-9]/', '', $quote->getData("customer_taxvat")),
+    "cnpjdes"       =>   preg_replace( '/[^0-9]/', '', $cnpjdes),
     "tipofrete"     =>   $this->getConfigData('shipping_type'),
     "peso"          =>   $Weight,
     "valornf"       =>   number_format($request->getPackageValue(), 2, '.', ''),
