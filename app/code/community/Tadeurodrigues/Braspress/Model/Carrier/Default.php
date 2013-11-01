@@ -114,7 +114,7 @@ class TadeuRodrigues_Braspress_Model_Carrier_Default extends Mage_Shipping_Model
 			Mage::log($calFrete->PRAZOENTREGA, null, 'braspress_test.log');
 			
 			if($this->getConfigData('delivery_time')){
-				$prazo = $calFrete->PRAZOENTREGA;
+				$prazo = $calFrete->PRAZO;
 				switch($prazo){
 					case 0:
 						$prazomsg = ' entrega imedita';
