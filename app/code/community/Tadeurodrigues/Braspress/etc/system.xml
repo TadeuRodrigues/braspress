@@ -120,6 +120,15 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </weight_type>
+                        <measure_type translate="label">
+                            <label>Unidade de Medida dos Produtos</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>braspress/source_measureType</source_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </measure_type>
                         <sallowspecific translate="label">
                             <label>Ship to Applicable Countries</label>
                             <frontend_type>select</frontend_type>
