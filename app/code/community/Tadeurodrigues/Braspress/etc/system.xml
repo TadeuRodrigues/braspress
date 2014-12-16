@@ -4,7 +4,7 @@
     <carriers>
         <groups>
             <braspress translate="label" module="shipping">
-                <label>TadeuRodrigues - Braspress</label>
+                <label>Braspress</label>
                 <frontend_type>text</frontend_type>
                 <sort_order>13</sort_order>
                 <show_in_default>1</show_in_default>
