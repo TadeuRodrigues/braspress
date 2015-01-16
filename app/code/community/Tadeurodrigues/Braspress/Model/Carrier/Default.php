@@ -103,6 +103,8 @@ class TadeuRodrigues_Braspress_Model_Carrier_Default extends Mage_Shipping_Model
 	//  Se a configuração do peso for em gramas, transforma o peso total para quilos  //
     if ($this->getConfigData('weight_type') == 2) $Weight /= 1000;
 
+	$PackageValue = number_format($request->getPackageValue(), 2, '.', '');
+
 	//  Verifica o CNPJ do destinatário  //
 	switch($this->getConfigData('use_default')){
 		case 0:
@@ -132,7 +134,7 @@ class TadeuRodrigues_Braspress_Model_Carrier_Default extends Mage_Shipping_Model
 						  "cnpjdes"    => preg_replace( '/[^0-9]/', '', $cnpjdes),
 						  "tipofrete"  => $this->getConfigData('shipping_type'),
 						  "peso"       => $Weight,
-						  "valornf"    => number_format($request->getPackageValue(), 2, '.', ''),
+						  "valornf"    => $PackageValue,
 						  "volume"     => $cart->getItemsCount(),
 						  "modal"      => $this->getConfigData('modal_type'));
 	//  ================================================  //
@@ -193,8 +195,20 @@ class TadeuRodrigues_Braspress_Model_Carrier_Default extends Mage_Shipping_Model
 
             $method->setMethodTitle($method_name);
 
-			//  Formata o valor do frete para float, caso contrário, não grava os centavos  //
-            $method->setPrice((float)preg_replace(array('|[^\d\.,]|', '|\.|', '|,|'), array('', '', '.'), $calFrete->TOTALFRETE));
+			//  Verifica se deve ser calculada uma porcentagem sobre o valor da compra para ser usada como valor do frete  //
+			$percentage_over_order_value = $this->getConfigData('percentage_over_order_value') == 1 &&
+										   ($percentage = (float)preg_replace(array('|[^\d\.,]|', '|\.|', '|,|'), array('', '', '.'), $this->getConfigData('percentage'))) &&
+										   ($percentage > 0 && $percentage < 100);
+
+			if ($percentage_over_order_value) {
+				$price = (float)number_format($PackageValue * $percentage / 100, 2, '.', '');
+			} else {
+				//  Formata o valor do frete para float, caso contrário, não grava os centavos  //
+				$price = (float)preg_replace(array('|[^\d\.,]|', '|\.|', '|,|'), array('', '', '.'), $calFrete->TOTALFRETE);
+			}
+			//  =========================================================================================================  //
+
+			$method->setPrice($price);
 
             // add this rate to the result
             $this->_result->append($method);

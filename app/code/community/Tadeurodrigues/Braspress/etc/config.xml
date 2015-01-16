@@ -85,6 +85,8 @@
                     <specificerrmsg>Houve um problema interno.</specificerrmsg>
                     <use_default>0</use_default>
                     <cnpj_default>02049076000137</cnpj_default>
+					<percentage_over_order_value>0</percentage_over_order_value>
+					<percentage>0</percentage>
                     <handling_type>R</handling_type>
             </braspress>
         </carriers>
