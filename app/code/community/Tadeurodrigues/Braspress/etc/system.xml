@@ -44,11 +44,39 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </method_name>
+                        <min_carrier_active translate="label">
+                            <label>Ativar Valor Mínimo de Frete?</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Escolha se deve ser adotado um valor de frete mínimo sobre o valor do pedido (Sim) ou o determinado pela Braspress (Não).]]></comment>
+                        </min_carrier_active>
+                        <min_carrier_value translate="label">
+                            <label>Valor Mínimo de Frete</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Quando o valor do frete deve ser um mínimo sobre o valor do pedido (somente números e vírgula). Valor deve maior que 0,00.]]></comment>
+                        </min_carrier_value>
+                        <min_carrier_max_order_value translate="label">
+                            <label>Valor Máximo do Pedido</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment><![CDATA[Quando o valor do frete deve ser um mínimo sobre o valor do pedido (somente números e vírgula). Valor deve maior que 0,00.]]></comment>
+                        </min_carrier_max_order_value>
                         <percentage_over_order_value translate="label">
                             <label>Valor do Frete Deve Ser um Percentual Sobre o Valor do Pedido?</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>60</sort_order>
+                            <sort_order>90</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -57,16 +85,16 @@
 						<percentage translate="label">
                             <label>Porcentagem (%)</label>
                             <frontend_type>text</frontend_type>
-                            <sort_order>70</sort_order>
+                            <sort_order>100</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <comment><![CDATA[Quando o valor do frete deve ser um percentual sobre o valor do pedido (somente números e vírgula). Valor deve ser de 0,01 e 99,99.]]></comment>
                         </percentage>
-                       <cnpj translate="label">
+                        <cnpj translate="label">
                             <label>CNPJ da Loja</label>
                             <frontend_type>text</frontend_type>
-                            <sort_order>80</sort_order>
+                            <sort_order>110</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -74,7 +102,7 @@
                         <use_default translate="label">
                             <label>usar CNPJ para o cálculo</label>
                             <frontend_type>select</frontend_type>
-                            <sort_order>82</sort_order>
+                            <sort_order>111</sort_order>
                             <source_model>braspress/source_cnpjDefault</source_model>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
@@ -83,6 +111,7 @@
 						<validation translate="label comment">
                             <label>Validation</label>
                             <button_label>Validation</button_label>
+                            <sort_order>112</sort_order>
                             <frontend_model>braspress/adminhtml_system_config_Validation</frontend_model>
                             <comment>
                             	Teste para verificar a autorização do CNPJ junto a Braspress.
@@ -92,12 +121,11 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                            <sort_order>82</sort_order>
                         </validation>
                         <cnpj_default>
                         	<label>CNPJ Padrão</label>
                             <frontend_type>text</frontend_type>
-                            <sort_order>83</sort_order>
+                            <sort_order>113</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -109,7 +137,7 @@
                             <label>Tipo de Acesso</label>
                             <frontend_type>select</frontend_type>
                             <source_model>braspress/source_accessType</source_model>
-                            <sort_order>85</sort_order>
+                            <sort_order>114</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -118,7 +146,7 @@
                             <label>Exibir Prazo</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>86</sort_order>
+                            <sort_order>115</sort_order>
                             <!--<depends>
                             	<access_type>1</access_type>
                             </depends> -->
@@ -130,7 +158,7 @@
                             <label>Tipo de Frete</label>
                             <frontend_type>select</frontend_type>
                             <source_model>braspress/source_shippingType</source_model>
-                            <sort_order>90</sort_order>
+                            <sort_order>120</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -139,7 +167,7 @@
                             <label>Modal</label>
                             <frontend_type>select</frontend_type>
                             <source_model>braspress/source_modalType</source_model>
-                            <sort_order>100</sort_order>
+                            <sort_order>130</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -148,7 +176,7 @@
                             <label>Peso</label>
                             <frontend_type>select</frontend_type>
                             <source_model>braspress/source_weightType</source_model>
-                            <sort_order>110</sort_order>
+                            <sort_order>140</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -157,7 +185,7 @@
                             <label>Unidade de Medida dos Produtos</label>
                             <frontend_type>select</frontend_type>
                             <source_model>braspress/source_measureType</source_model>
-                            <sort_order>120</sort_order>
+                            <sort_order>150</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>

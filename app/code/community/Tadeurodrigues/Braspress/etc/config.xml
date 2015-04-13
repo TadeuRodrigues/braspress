@@ -85,6 +85,9 @@
                     <specificerrmsg>Houve um problema interno.</specificerrmsg>
                     <use_default>0</use_default>
                     <cnpj_default>02049076000137</cnpj_default>
+					<min_carrier_active>0</min_carrier_active>
+					<min_carrier_value>0</min_carrier_value>
+					<min_carrier_max_order_value>0</min_carrier_max_order_value>
 					<percentage_over_order_value>0</percentage_over_order_value>
 					<percentage>0</percentage>
                     <handling_type>R</handling_type>

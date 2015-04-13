@@ -172,10 +172,10 @@ class TadeuRodrigues_Braspress_Model_Carrier_Default extends Mage_Shipping_Model
             // record method information
             $method->setMethod($this->_code);
 
-			Mage::log($calFrete->PRAZOENTREGA, null, 'braspress_test.log');
+			Mage::log($calFrete->PRAZO, null, 'braspress_test.log');
 			
 			if($this->getConfigData('delivery_time')){
-				$prazo = $calFrete->PRAZOENTREGA;
+				$prazo = $calFrete->PRAZO;
 				switch($prazo){
 					case 0:
 						$prazomsg = ' entrega imediata';
@@ -196,11 +196,18 @@ class TadeuRodrigues_Braspress_Model_Carrier_Default extends Mage_Shipping_Model
             $method->setMethodTitle($method_name);
 
 			//  Verifica se deve ser calculada uma porcentagem sobre o valor da compra para ser usada como valor do frete  //
+			$min_carrier_valid = $this->getConfigData('min_carrier_active') == 1 &&
+								 ($min_carrier_value = (float)preg_replace(array('|[^\d\.,]|', '|\.|', '|,|'), array('', '', '.'), $this->getConfigData('min_carrier_value'))) && $min_carrier_value > 0.00 &&
+								 ($min_carrier_max_order_value = (float)preg_replace(array('|[^\d\.,]|', '|\.|', '|,|'), array('', '', '.'), $this->getConfigData('min_carrier_max_order_value'))) && $min_carrier_max_order_value > 0.00 &&
+								 $PackageValue <= $min_carrier_max_order_value;
+
 			$percentage_over_order_value = $this->getConfigData('percentage_over_order_value') == 1 &&
 										   ($percentage = (float)preg_replace(array('|[^\d\.,]|', '|\.|', '|,|'), array('', '', '.'), $this->getConfigData('percentage'))) &&
 										   ($percentage > 0 && $percentage < 100);
 
-			if ($percentage_over_order_value) {
+			if ($min_carrier_valid) {
+				$price = (float)number_format($min_carrier_value, 2, '.', '');
+			} elseif ($percentage_over_order_value) {
 				$price = (float)number_format($PackageValue * $percentage / 100, 2, '.', '');
 			} else {
 				//  Formata o valor do frete para float, caso contrário, não grava os centavos  //
