@@ -21,7 +21,7 @@
 
 class Tadeurodrigues_Braspress_Adminhtml_BraspressController extends Mage_Adminhtml_Controller_Action
 {
-	 protected $_url_base_web	=	'http://www.braspress.com.br/cotacaoXml?param=';
+	 protected $_url_base_web	=	'http://tracking.braspress.com.br/trk/trkisapi.dll/PgCalcFrete_XML?param=';
 	  
     /**
      * Return some checking result
